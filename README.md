@@ -88,5 +88,5 @@ network-scanner/
 ```
 
 📜 Лицензия
-MIT License © 2023 [Ваше имя]
+MIT License © 2023 welir
 Подробнее
