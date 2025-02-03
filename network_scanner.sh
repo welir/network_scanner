@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Network Port Scanner
-# Author: Your Name
+# Author: Denis Voronin
 # Version: 1.1
 # License: MIT
 
