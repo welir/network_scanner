@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)  
 _Проверяйте открытые порты и мгновенно находите изменения в сети!_
 
-# 🛰️ Network Scanner Pro [![Stars](https://img.shields.io/github/stars/yourusername/network-scanner?style=social)](https://github.com/yourusername/network-scanner)
+# 🛰️ Network Scanner Pro [![Stars](https://img.shields.io/github/stars/yourusername/network-scanner?style=social)](https://github.com/welir/network-scanner)
 
 Универсальный инструмент для аудита локальных сетей с AI-powered анализом угроз.
 
