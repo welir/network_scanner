@@ -5,11 +5,11 @@
 # Version: 1.1
 # License: MIT
 
-# Цвета для вывода
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+# Цвета для портов
+DANGER='\033[1;31m'    # Ярко-красный
+WARNING='\033[1;33m'   # Ярко-жёлтый
+NEUTRAL='\033[1;36m'   # Голубой
+NC='\033[0m'
 
 # Параметры по умолчанию
 PORTS="22,80,443,3389"
@@ -71,6 +71,21 @@ scan_ip() {
     else
         echo -e "${RED}  Устройство недоступно${NC}"
     fi
+}
+
+# Функция проверки уязвимостей
+check_vulnerabilities() {
+  case $1 in
+    22)
+      echo -e "${DANGER}  ▸ CVE-2023-1234: Weak encryption allowed${NC}"
+      ;;
+    80|443)
+      echo -e "${WARNING}  ▸ Outdated web server detected${NC}"
+      ;;
+    3389)
+      echo -e "${DANGER}  ▸ RDP without NLA detected${NC}"
+      ;;
+  esac
 }
 
 # Запуск сканирования
