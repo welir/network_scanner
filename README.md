@@ -107,11 +107,26 @@ docker run --rm -it --net=host ubuntu:latest bash -c "
 📂 Структура проекта
 ```
 network-scanner/
-├── scanner.sh          # Основной скрипт
-├── reports/            # Архив отчетов
-├── comparer.py         # Модуль сравнения
-├── LICENSE
-└── README.md
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions для тестов
+├── docs/
+│   ├── getting_started.md  # Руководство
+│   └── faq.md              # Частые вопросы
+├── examples/
+│   ├── scan_report.txt     # Пример отчёта
+│   └── delta_diff.json     # Пример сравнения
+├── src/
+│   └── network_scanner.sh  # Основной скрипт
+├── tests/
+│   └── test_scanner.sh     # Юнит-тесты
+├── .gitignore              # Игнорируемые файлы
+├── LICENSE                 # Лицензия MIT
+├── README.md               # Документация
+├── CONTRIBUTING.md         # Правила контрибуции
+├── CHANGELOG.md            # История изменений
+├── requirements.txt        # Зависимости
+└── setup.sh                # Установщик
 ```
 
 📜 Лицензия
