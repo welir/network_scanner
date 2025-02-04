@@ -91,6 +91,16 @@ sudo dnf install nmap arp-scan # Fedora/CentOS
 - 192.168.1.15: 
   ❌ Порт 3389 закрыт (был RDP)
 ```
+
+Пример для Docker (если нужно изолированное окружение):
+```
+docker run --rm -it --net=host ubuntu:latest bash -c "
+  apt update && apt install -y git nmap arp-scan && 
+  git clone https://github.com/yourusername/network-scanner.git && 
+  cd network-scanner && 
+  ./src/network_scanner.sh
+"
+```
 ---
 
 📂 Структура проекта
