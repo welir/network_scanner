@@ -3,6 +3,18 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)  
 _Проверяйте открытые порты и мгновенно находите изменения в сети!_
 
+# 🛰️ Network Scanner Pro [![Stars](https://img.shields.io/github/stars/yourusername/network-scanner?style=social)](https://github.com/yourusername/network-scanner)
+
+Универсальный инструмент для аудита локальных сетей с AI-powered анализом угроз.
+
+➡️ **Главные фичи**:
+- Режим Стелс (Avoid IDS Detection)
+- Автоматическая классификация устройств (IoT/PC/Server)
+- Генератор рекомендаций по безопасности
+- REST API для интеграции
+
+[Демо](https://welir.github.io/network-scanner) | [Документация](docs/getting_started.md)
+
 ---
 
 ## ✨ Уникальная фишка: **Delta Detective**
