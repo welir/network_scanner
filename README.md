@@ -115,7 +115,7 @@ docker run --rm -it --net=host ubuntu:latest bash -c "
   apt update && apt install -y git nmap arp-scan && 
   git clone https://github.com/yourusername/network-scanner.git && 
   cd network_scanner && 
-  ./src/network_scanner.sh
+  ./network_scanner.sh
 "
 ```
 
@@ -133,8 +133,7 @@ network-scanner/
 ├── examples/
 │   ├── scan_report.txt     # Пример отчёта
 │   └── delta_diff.json     # Пример сравнения
-├── src/
-│   └── network_scanner.sh  # Основной скрипт
+│── network_scanner.sh  # Основной скрипт
 ├── tests/
 │   └── test_scanner.sh     # Юнит-тесты
 ├── .gitignore              # Игнорируемые файлы
