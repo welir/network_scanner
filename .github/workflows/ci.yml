@@ -1,0 +1,19 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y nmap arp-skan
+          
+      - name: Run tests
+        run: |
+          chmod +x tests/test_scanner.sh
+          ./tests/test_scanner.sh
