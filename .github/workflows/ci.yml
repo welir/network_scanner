@@ -15,5 +15,5 @@ jobs:
           
       - name: Run tests
         run: |
-          chmod +x tests/test_scanner.sh
+          chmod +x tests/test_scanner.sh network_scanner.sh
           ./tests/test_scanner.sh
