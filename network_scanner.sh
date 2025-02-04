@@ -1,6 +1,6 @@
 #!/bin/bash
 # Network Security Scanner Ultimate
-# Author: Your Name
+# Author: Denis Voronin
 # Version: 2.0
 # License: MIT
 
