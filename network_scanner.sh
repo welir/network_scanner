@@ -42,10 +42,8 @@ compare_reports() {
     
     echo -e "\n${CYAN}[*] Сравнение с предыдущим сканированием...${NC}"
     
-    diff -u <(jq -S . "$previous_scan") <(jq -S . "$current_scan") \
-        | diff-so-fancy \
-        | sed 's/║/│/g; s/═/─/g; s/╬/┼/g; s/╩/┴/g; s/╦/┬/g'
-    
+    diff -u "$previous_scan" "$current_scan"
+       
     echo -e "${GREEN}[✓] Сравнение завершено${NC}"
 }
 
