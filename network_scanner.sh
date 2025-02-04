@@ -35,31 +35,48 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-# Новая функция сравнения
 compare_reports() {
-    local current_scan="$1"
-    local previous_scan="$2"
+    local current_report="$1"
+    local previous_report="$2"
     
-    echo -e "\n${CYAN}[*] Сравнение с предыдущим сканированием...${NC}"
+    echo -e "\n${CYAN}[*] Анализ изменений в сети...${NC}"
     
-    diff -u "$previous_scan" "$current_scan"
-       
-    echo -e "${GREEN}[✓] Сравнение завершено${NC}"
-}
-
-check_dependencies() {
-    local missing=()
-    for cmd in nmap arp-scan sudo; do
-        if ! command -v $cmd &> /dev/null; then
-            missing+=("$cmd")
-        fi
+    # Создаем временные файлы с сортированными данными
+    current_sorted=$(mktemp)
+    jq -S 'to_entries | sort_by(.key)' "$current_report" > "$current_sorted"
+    
+    previous_sorted=$(mktemp)
+    jq -S 'to_entries | sort_by(.key)' "$previous_report" > "$previous_sorted"
+    
+    # Поиск новых и исчезнувших IP-адресов
+    echo -e "${YELLOW}=== Изменения в устройствах ===${NC}"
+    comm -13 <(jq -r '.[].key' "$previous_sorted") <(jq -r '.[].key' "$current_sorted") | while read ip; do
+        echo -e "${GREEN}[+] Новое устройство: $ip${NC}"
+    done
+    
+    comm -23 <(jq -r '.[].key' "$previous_sorted") <(jq -r '.[].key' "$current_sorted") | while read ip; do
+        echo -e "${RED}[-] Устройство пропало: $ip${NC}"
     done
 
-    if [ ${#missing[@]} -gt 0 ]; then
-        echo -e "${RED}[!] Missing dependencies:${NC} ${missing[*]}"
-        echo "Install with: sudo apt install ${missing[*]}"
-        exit 1
-    fi
+    # Анализ изменений портов
+    echo -e "\n${YELLOW}=== Изменения в портах ===${NC}"
+    jq -r '.[].key' "$previous_sorted" | while read ip; do
+        current_ports=$(jq -r ".[] | select(.key == \"$ip\") | .value.ports[]" "$current_sorted")
+        previous_ports=$(jq -r ".[] | select(.key == \"$ip\") | .value.ports[]" "$previous_sorted")
+        
+        # Поиск новых портов
+        comm -13 <(echo "$previous_ports" | sort) <(echo "$current_ports" | sort) | while read port; do
+            echo -e "${GREEN}[+] $ip: Добавлен порт $port${NC}"
+        done
+        
+        # Поиск закрытых портов
+        comm -23 <(echo "$previous_ports" | sort) <(echo "$current_ports" | sort) | while read port; do
+            echo -e "${RED}[-] $ip: Закрыт порт $port${NC}"
+        done
+    done
+    
+    # Удаление временных файлов
+    rm "$current_sorted" "$previous_sorted"
 }
 
 scan_network() {
@@ -116,6 +133,16 @@ detect_vulnerabilities() {
 generate_report() {
     echo "Scan Report: $(date)" > "$REPORT_FILE"
     echo "==========================" >> "$REPORT_FILE"
+}
+
+generate_json_report() {
+    echo "{"
+    for ip in "${IP_LIST[@]}"; do
+        echo "\"$ip\": {"
+        echo "\"ports\": [$(nmap -p $PORTS $ip | awk '/open/{print $1}' | tr '\n' ',')]"
+        echo "},"
+    done
+    echo "}"
 }
 
 main() {
