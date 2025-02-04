@@ -10,7 +10,6 @@ _Проверяйте открытые порты и мгновенно нахо
 - Режим Стелс (Avoid IDS Detection)
 - Автоматическая классификация устройств (IoT/PC/Server)
 - Генератор рекомендаций по безопасности
-- REST API для интеграции
 
 [Демо](https://welir.github.io/network-scanner) | [Документация](docs/getting_started.md)
 
