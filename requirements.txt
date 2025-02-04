@@ -1,2 +1,4 @@
 nmap==7.94
 arp-scan==1.9.7
+diff-so-fancy
+jq
