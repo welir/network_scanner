@@ -93,7 +93,7 @@ sudo dnf install nmap arp-scan # Fedora/CentOS
 ```
 
 Пример для Docker (если нужно изолированное окружение):
-```
+```docker
 docker run --rm -it --net=host ubuntu:latest bash -c "
   apt update && apt install -y git nmap arp-scan && 
   git clone https://github.com/yourusername/network-scanner.git && 
@@ -101,6 +101,7 @@ docker run --rm -it --net=host ubuntu:latest bash -c "
   ./src/network_scanner.sh
 "
 ```
+
 ---
 
 📂 Структура проекта
