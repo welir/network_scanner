@@ -7,4 +7,4 @@ test_scan_localhost() {
 }
 
 # Загрузка shunit2
-source shunit2
+source /usr/share/shunit2/shunit2
