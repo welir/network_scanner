@@ -2,8 +2,7 @@
 **Умный сканер локальной сети с детектором изменений портов**  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)  
 _Проверяйте открытые порты и мгновенно находите изменения в сети!_
-
-# 🛰️ Network Scanner Pro [![Stars](https://img.shields.io/github/stars/welir/network_scanner?style=social)]([https://github.com/welir/network-scanner](https://github.com/welir/network_scanner))
+ [![Stars](https://img.shields.io/github/stars/welir/network_scanner?style=social)]([https://github.com/welir/network-scanner](https://github.com/welir/network_scanner))
 
 Универсальный инструмент для аудита локальных сетей с AI-powered анализом угроз.
 
