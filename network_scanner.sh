@@ -19,19 +19,35 @@ DEFAULT_PORTS="21,22,80,443,3389"
 SCAN_PROFILE="default"
 OUTPUT_FORMAT="color"
 REPORT_FILE="scan_report_$(date +%Y%m%d_%H%M%S).txt"
+COMPARE_MODE=false
+COMPARE_FILE=""
 
 # Парсинг аргументов
 while [[ $# -gt 0 ]]; do
     case $1 in
         -p|--ports) CUSTOM_PORTS="$2"; shift ;;
         -a|--all-ports) SCAN_PROFILE="full" ;;
-        -c|--compare) COMPARE_FILE="$2"; shift ;;
+        -c|--compare) COMPARE_MODE=true; COMPARE_FILE="$2"; shift ;;
         -o|--output) OUTPUT_FORMAT="$2"; shift ;;
         -s|--stealth) STEALTH_MODE=true ;;
         *) echo -e "${RED}[!] Unknown option: $1${NC}"; exit 1 ;;
     esac
     shift
 done
+
+# Новая функция сравнения
+compare_reports() {
+    local current_scan="$1"
+    local previous_scan="$2"
+    
+    echo -e "\n${CYAN}[*] Сравнение с предыдущим сканированием...${NC}"
+    
+    diff -u <(jq -S . "$previous_scan") <(jq -S . "$current_scan") \
+        | diff-so-fancy \
+        | sed 's/║/│/g; s/═/─/g; s/╬/┼/g; s/╩/┴/g; s/╦/┬/g'
+    
+    echo -e "${GREEN}[✓] Сравнение завершено${NC}"
+}
 
 check_dependencies() {
     local missing=()
@@ -105,10 +121,19 @@ generate_report() {
 }
 
 main() {
-    check_dependencies
-    generate_report
-    scan_network | tee -a "$REPORT_FILE"
-    echo -e "${CYAN}[*] Report saved to: $REPORT_FILE${NC}"
+  if [ "$COMPARE_MODE" = true ]; then
+        if [ ! -f "$COMPARE_FILE" ]; then
+            echo -e "${RED}[!] Файл для сравнения не найден: $COMPARE_FILE${NC}"
+            exit 1
+        fi
+        local temp_report=$(mktemp)
+        scan_network > "$temp_report"
+        compare_reports "$temp_report" "$COMPARE_FILE"
+        rm "$temp_report"
+    else
+        scan_network | tee -a "$REPORT_FILE"
+        echo -e "${CYAN}[*] Отчет сохранен: $REPORT_FILE${NC}"
+    fi
 }
 
 main
