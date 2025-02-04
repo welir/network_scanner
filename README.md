@@ -38,7 +38,6 @@ _Проверяйте открытые порты и мгновенно нахо
 
 ## 📦 Установка
 ```bash
-mkdir network-scanner
 git clone https://github.com/welir/network_scanner.git
 cd network-scanner
 chmod +x network_scanner.sh
