@@ -41,7 +41,7 @@ _Проверяйте открытые порты и мгновенно нахо
 mkdir network-scanner
 git clone https://github.com/welir/network_scanner.git
 cd network-scanner
-chmod +x scanner.sh
+chmod +x network_scanner.sh
 ```
 
 ### Автоматическая установка (опционально)
@@ -73,7 +73,7 @@ Copy
 
 # Сравнение с предыдущим сканированием:
 ```
-./scanner.sh --compare last_scan.json
+./network_scanner.sh --compare last_scan.json
 ```
 
 Параметры:
