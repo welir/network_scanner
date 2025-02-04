@@ -117,7 +117,7 @@ Copy
 docker run --rm -it --net=host ubuntu:latest bash -c "
   apt update && apt install -y git nmap arp-scan && 
   git clone https://github.com/yourusername/network-scanner.git && 
-  cd network-scanner && 
+  cd network_scanner && 
   ./src/network_scanner.sh
 "
 ```
