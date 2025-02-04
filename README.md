@@ -31,6 +31,12 @@ git clone https://github.com/yourusername/network-scanner.git
 cd network-scanner
 chmod +x scanner.sh
 ```
+
+### Автоматическая установка (опционально)
+```bash
+sudo ./setup.sh  # Скопирует скрипт в /usr/local/bin
+```
+
 Зависимости:
 
 ```bash
