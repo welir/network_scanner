@@ -50,9 +50,9 @@ sudo ./setup.sh  # Скопирует скрипт в /usr/local/bin
 Зависимости:
 
 ```bash
-sudo apt install nmap arp-scan diff-so-fancy jq# Debian/Ubuntu
+sudo apt install nmap arp-scan jq# Debian/Ubuntu
 
-sudo dnf install nmap arp-scan diff-so-fancy jq# Fedora/CentOS
+sudo dnf install nmap arp-scan jq# Fedora/CentOS
 ```
 ---
 
