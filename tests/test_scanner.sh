@@ -1,7 +1,7 @@
 #!/bin/bash
 
 testLocalhostScan() {
-    result=$(./src/network_scanner.sh -p 80 -o text)
+    result=$(./network_scanner.sh -p 80 -o text)
     assertContains "$result" "80/tcp"
 }
 # Загрузка shunit2
