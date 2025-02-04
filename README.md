@@ -39,7 +39,7 @@ _Проверяйте открытые порты и мгновенно нахо
 ## 📦 Установка
 ```bash
 git clone https://github.com/welir/network_scanner.git
-cd network-scanner
+cd network_scanner
 chmod +x network_scanner.sh
 ```
 
